@@ -8,4 +8,12 @@
 * 查看電影列表及詳細信息
 * 預訂座位
 * 管理預訂（查看和取消預訂）
-* JWT 認證   
+* JWT 認證
+
+技術棧
+-------------  
+* 後端框架：Flask
+* 數據庫：PostgreSQL
+* ORM：SQLAlchemy
+* 身份驗證：Flask-JWT-Extended
+* 容器化：Docker 和 Docker Compose
