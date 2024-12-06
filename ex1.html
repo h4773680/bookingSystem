@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>座位分配系統</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .container { max-width: 600px; margin: 20px auto; }
+        .seat-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 10px; margin-bottom: 20px; }
+        .seat { width: 50px; height: 50px; background-color: #ddd; text-align: center; line-height: 50px; cursor: pointer; }
+        .seat.selected { background-color: #4CAF50; color: white; }
+        .button { padding: 10px 20px; background-color: #007BFF; color: white; border: none; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>座位分配系統</h2>
+    <div class="seat-grid" id="seatGrid">
+        <!-- 座位會自動生成 -->
+    </div>
+    <p>已選人數：<span id="selectedCount">0</span></p>
+    <button class="button" id="saveBtn">儲存</button>
+</div>
+
+<script>
+$(document).ready(function() {
+    const seatCount = 50;  // 座位數量
+    let selectedSeats = JSON.parse(localStorage.getItem("selectedSeats")) || [];
+    
+    // 初始化座位網格
+    for (let i = 1; i <= seatCount; i++) {
+        const seat = $("<div>").addClass("seat").text(i);
+        if (selectedSeats.includes(i)) {
+            seat.addClass("selected");
+        }
+        $("#seatGrid").append(seat);
+    }
+
+    // 更新已選人數
+    function updateSelectedCount() {
+        const count = $(".seat.selected").length;
+        $("#selectedCount").text(count);
+    }
+    
+    // 初始更新人數
+    updateSelectedCount();
+    
+    // 座位點擊事件
+    $(".seat").on("click", function() {
+        $(this).toggleClass("selected");
+        const seatNumber = parseInt($(this).text());
+        if ($(this).hasClass("selected")) {
+            selectedSeats.push(seatNumber);
+        } else {
+            selectedSeats = selectedSeats.filter(num => num !== seatNumber);
+        }
+        updateSelectedCount();
+    });
+
+    // 儲存按鈕事件
+    $("#saveBtn").on("click", function() {
+        localStorage.setItem("selectedSeats", JSON.stringify(selectedSeats));
+        alert("座位已儲存！");
+    });
+});
+</script>
+
+</body>
+</html>
