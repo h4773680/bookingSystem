@@ -10,6 +10,10 @@
 * 管理預訂（查看和取消預訂）
 * JWT 認證
 
+## 安裝
+
+- 確保已安裝 [Docker](https://www.docker.com/get-started) 和 [Docker Compose](https://docs.docker.com/compose/).  
+
 技術
 -------------  
 * 後端框架：Flask
