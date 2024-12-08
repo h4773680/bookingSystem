@@ -23,4 +23,4 @@
 1. 訪問 `http://localhost:5001` 來使用應用程序。
 2. 使用 POST 請求到 `/register` 來註冊新用戶，請求體應包含 `username`、`email` 和 `password`。
 3. 使用 POST 請求到 `/login` 來登錄，請求體應包含 `username` 和 `password`，成功登錄後將返回 JWT 令牌。
-4. 使用 JWT 令牌訪問受保護的路由，例如預訂座位和查看電影。
+4. 使用 JWT 令牌訪問受保護的路由，例如預位和查詢電影。
